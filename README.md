@@ -50,7 +50,7 @@ If you'd rather use something else (all support WebSockets, no card needed):
 - **Koyeb** — free Nano instance, deploys from Git.
 - **Adaptable.io** — free tier, deploys from Git.
 
-For all of them: build = `npm install && npm run build:all`, start = `npm run start:prod`.
+For all of them: build = `npm ci && npm run build:all`, start = `npm run start:prod`.
 
 ---
 

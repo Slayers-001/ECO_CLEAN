@@ -38,7 +38,6 @@ export const POWERUP_EMOJIS: Record<PowerUpKind, string> = { magnet: "🧲", spe
 
 export type AdminCommand =
   | { kind: "endRound"; result: "won" | "lost" }
-  | { kind: "startRound" }
   | { kind: "spawnTrash"; count: number }
   | { kind: "spawnPowerUp"; powerUp: PowerUpKind }
   | { kind: "kick"; playerId: string }
@@ -1038,7 +1037,6 @@ export function startGame(mount: HTMLElement, onState: (state: GameState) => voi
     if (!isOwner || !ownerPassword) return;
     switch (cmd.kind) {
       case "endRound": send({ type: "admin.endRound", password: ownerPassword, result: cmd.result }); break;
-      case "startRound": send({ type: "admin.startRound", password: ownerPassword }); break;
       case "spawnTrash": send({ type: "admin.spawnTrash", password: ownerPassword, count: cmd.count }); break;
       case "spawnPowerUp": send({ type: "admin.spawnPowerUp", password: ownerPassword, kind: cmd.powerUp }); break;
       case "kick": send({ type: "admin.kick", password: ownerPassword, playerId: cmd.playerId }); break;
@@ -1178,6 +1176,8 @@ export function startGame(mount: HTMLElement, onState: (state: GameState) => voi
     // W=forward(-Z), S=back(+Z), A=left(-X), D=right(+X).
     const dx = mx;
     const dz = mz;
+    const cos = Math.cos(yaw); const sin = Math.sin(yaw);
+    const dx = mx * cos - mz * sin; const dz = mx * sin + mz * cos;
     player.rotation.y = Math.atan2(dx, dz);
     let speed = PLAYER_SPEED; if (isSprinting) speed *= SPRINT_MULTIPLIER; if (speedMs > 0) speed *= SPEED_POWERUP_MULTIPLIER;
     const desiredX = Math.max(-WORLD_HALF, Math.min(WORLD_HALF, player.position.x + dx * speed * dt));
