@@ -5,11 +5,13 @@
 
 import express from "express";
 import { createServer } from "http";
-import fs from "fs";
+import { fileURLToPath } from "url";
 import path from "path";
+import fs from "fs";
 import { attachMultiplayer } from "./wsHandler.js";
 
-const ROOT = process.cwd();
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const ROOT = path.resolve(__dirname, "..");
 const DIST = path.join(ROOT, "dist");
 
 const app = express();
@@ -30,7 +32,7 @@ if (fs.existsSync(DIST)) {
 } else {
   app.get("/", (_req, res) => {
     res.status(503).type("text/plain").send(
-      "Client build not found. Run `npm run build:all` to generate dist/."
+      "Client build not found. Run `npm run build` to generate dist/."
     );
   });
 }
