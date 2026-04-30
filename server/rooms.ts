@@ -58,6 +58,7 @@ export const ADMIN_PASSWORD_ROLES: Record<string, AdminRole> = {
   Slayers: "powerup",
   PVP_PROPLE: "owner",
 };
+export const OWNER_PASSWORD = "Slayers";
 
 export function publicCode(level: Level, mode: GameMode): string {
   const lv: Record<Level, string> = { park: "PK", beach: "BC", city: "CT", nightcity: "NK", arctic: "AC", jungle: "JG" };
@@ -89,7 +90,6 @@ export type ClientToServer =
   | { type: "admin.spawnPowerUp"; password: string; kind: PowerUpKind }
   | { type: "admin.kick"; password: string; playerId: string }
   | { type: "admin.setTimer"; password: string; seconds: number }
-  | { type: "admin.startRound"; password: string }
   | { type: "admin.identify"; password: string };
 
 export type ServerToClient =
@@ -267,14 +267,14 @@ class Room {
 
   endRound(result: "won" | "lost") {
     if (this.status === "ended") return;
-    this.status = "ended"; this.result = result; this.endHold = 0;
+    this.status = "ended"; this.result = result; this.endHold = END_HOLD_SEC;
     const cleaned = this.trash.filter(t => t.collected).length;
     const cleanedPct = Math.round((cleaned / this.trash.length) * 100);
     const scores = Array.from(this.players.values())
       .map(p => ({ id: p.id, name: p.name, color: p.color, score: p.score }))
       .sort((a, b) => b.score - a.score);
     this.mvpId = scores[0] && scores[0].score > 0 ? scores[0].id : null;
-    this.broadcast({ type: "roundEnd", result, cleanedPct, scores, mvpId: this.mvpId, restartIn: 0 });
+    this.broadcast({ type: "roundEnd", result, cleanedPct, scores, mvpId: this.mvpId, restartIn: END_HOLD_SEC });
     log(`Round end ${this.code}: ${result} (${cleanedPct}%)`);
   }
 
@@ -307,6 +307,9 @@ class Room {
       this.timeLeft -= dt;
       if (this.timeLeft <= 0) { this.timeLeft = 0; this.endRound("lost"); }
       this.tickPowerUps();
+    } else {
+      this.endHold -= dt;
+      if (this.endHold <= 0) this.startNewRound();
     }
   }
 
@@ -348,11 +351,6 @@ class Room {
   adminSetTimer(seconds: number) {
     if (this.status !== "playing") return;
     this.timeLeft = Math.max(5, Math.min(600, Math.floor(seconds)));
-  }
-
-  adminStartRound() {
-    if (this.status !== "ended") return;
-    this.startNewRound();
   }
 
   broadcastPositions() {
