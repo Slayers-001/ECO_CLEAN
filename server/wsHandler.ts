@@ -6,6 +6,7 @@ import { WebSocketServer, type WebSocket } from "ws";
 import type { Server as HttpServer, IncomingMessage } from "http";
 import {
   ADMIN_PASSWORD_ROLES, makePlayerId, roomManager,
+  makePlayerId, OWNER_PASSWORD, roomManager,
   VALID_DIFFICULTIES, VALID_LEVELS, VALID_GAME_MODES,
   type ClientToServer, type Difficulty, type EmoteKind, type GameMode, type Level, type PowerUpKind,
 } from "./rooms.js";
@@ -118,9 +119,28 @@ export function attachMultiplayer(server: HttpServer) {
           break;
         case "admin.setTimer":
           if (getAdminRole(msg.password) === "owner" && typeof msg.seconds === "number") room.adminSetTimer(msg.seconds);
+        case "admin.identify":
+          ws.send(JSON.stringify(msg.password === OWNER_PASSWORD
+            ? { type: "adminAck", ok: true, message: "Owner mode unlocked." }
+            : { type: "adminAck", ok: false, message: "Wrong owner password." }
+          ));
           break;
-        case "admin.startRound":
-          if (getAdminRole(msg.password) === "owner") room.adminStartRound();
+        case "admin.endRound":
+          if (msg.password === OWNER_PASSWORD) room.adminEndRound(msg.result === "won" ? "won" : "lost");
+          break;
+        case "admin.spawnTrash":
+          if (msg.password === OWNER_PASSWORD && typeof msg.count === "number") room.adminSpawnTrash(msg.count);
+          break;
+        case "admin.spawnPowerUp":
+          if (msg.password === OWNER_PASSWORD && typeof msg.kind === "string" && isPowerUpKind(msg.kind))
+            room.adminSpawnPowerUp(msg.kind);
+          break;
+        case "admin.kick":
+          if (msg.password === OWNER_PASSWORD && typeof msg.playerId === "string" && msg.playerId !== playerId)
+            room.adminKick(msg.playerId);
+          break;
+        case "admin.setTimer":
+          if (msg.password === OWNER_PASSWORD && typeof msg.seconds === "number") room.adminSetTimer(msg.seconds);
           break;
       }
     });

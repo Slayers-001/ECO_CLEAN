@@ -591,6 +591,7 @@ function App() {
               <button onClick={() => setShowOwnerLogin(false)} className="text-purple-700 text-2xl leading-none px-2 hover:bg-purple-50 rounded">×</button>
             </div>
             <p className="text-sm text-gray-600 mb-3">Passwords: <b>Slayers</b> (power-ups only) or <b>PVP_PROPLE</b> (full owner controls).</p>
+            <p className="text-sm text-gray-600 mb-3">Enter the owner password to unlock admin commands for this room.</p>
             <input type="password" value={ownerPwInput} onChange={e => setOwnerPwInput(e.target.value)}
               onKeyDown={e => { if (e.key === "Enter") { handleSubmitOwner(); setShowOwnerLogin(false); } }}
               placeholder="Owner password" autoFocus
@@ -620,7 +621,6 @@ function App() {
               <div className="grid grid-cols-2 gap-2">
                 <button onClick={() => sendAdmin({ kind: "endRound", result: "won" })} className="bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 rounded shadow">End round (Win)</button>
                 <button onClick={() => sendAdmin({ kind: "endRound", result: "lost" })} className="bg-red-600 hover:bg-red-700 text-white text-sm font-semibold py-2 rounded shadow">End round (Lose)</button>
-                <button onClick={() => sendAdmin({ kind: "startRound" })} className="col-span-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold py-2 rounded shadow">Start new round</button>
               </div>
               <div className="mt-2 flex items-center gap-2">
                 <input type="number" min={5} max={600} value={adminTimerInput} onChange={e => setAdminTimerInput(e.target.value)}
