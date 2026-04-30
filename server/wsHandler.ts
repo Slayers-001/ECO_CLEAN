@@ -5,10 +5,15 @@
 import { WebSocketServer, type WebSocket } from "ws";
 import type { Server as HttpServer, IncomingMessage } from "http";
 import {
+  ADMIN_PASSWORD_ROLES, makePlayerId, roomManager,
   makePlayerId, OWNER_PASSWORD, roomManager,
   VALID_DIFFICULTIES, VALID_LEVELS, VALID_GAME_MODES,
   type ClientToServer, type Difficulty, type EmoteKind, type GameMode, type Level, type PowerUpKind,
 } from "./rooms.js";
+
+function getAdminRole(password: string): "owner" | "powerup" | null {
+  return ADMIN_PASSWORD_ROLES[password] ?? null;
+}
 
 const VALID_EMOTES: EmoteKind[] = ["wave", "thumbsup", "recycle", "smile", "cheer"];
 function isEmote(x: string): x is EmoteKind { return (VALID_EMOTES as string[]).includes(x); }
@@ -90,6 +95,30 @@ export function attachMultiplayer(server: HttpServer) {
           ws.send(JSON.stringify({ type: "pong", t: msg.t }));
           break;
         case "join": break;
+        case "admin.identify": {
+          const role = getAdminRole(msg.password);
+          ws.send(JSON.stringify(role
+            ? { type: "adminAck", ok: true, message: role === "owner" ? "Owner mode unlocked." : "Power-up admin unlocked." }
+            : { type: "adminAck", ok: false, message: "Wrong owner password." }
+          ));
+          break;
+        }
+        case "admin.endRound":
+          if (getAdminRole(msg.password) === "owner") room.adminEndRound(msg.result === "won" ? "won" : "lost");
+          break;
+        case "admin.spawnTrash":
+          if (getAdminRole(msg.password) === "owner" && typeof msg.count === "number") room.adminSpawnTrash(msg.count);
+          break;
+        case "admin.spawnPowerUp":
+          if (getAdminRole(msg.password) && typeof msg.kind === "string" && isPowerUpKind(msg.kind))
+            room.adminSpawnPowerUp(msg.kind);
+          break;
+        case "admin.kick":
+          if (getAdminRole(msg.password) === "owner" && typeof msg.playerId === "string" && msg.playerId !== playerId)
+            room.adminKick(msg.playerId);
+          break;
+        case "admin.setTimer":
+          if (getAdminRole(msg.password) === "owner" && typeof msg.seconds === "number") room.adminSetTimer(msg.seconds);
         case "admin.identify":
           ws.send(JSON.stringify(msg.password === OWNER_PASSWORD
             ? { type: "adminAck", ok: true, message: "Owner mode unlocked." }

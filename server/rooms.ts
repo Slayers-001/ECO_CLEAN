@@ -52,6 +52,12 @@ export const VALID_LEVELS: Level[] = ["park", "beach", "city", "nightcity", "arc
 export const VALID_DIFFICULTIES: Difficulty[] = ["easy", "normal", "hard"];
 export const VALID_GAME_MODES: GameMode[] = ["speedrun", "percent100", "powerup"];
 
+export type AdminRole = "owner" | "powerup";
+
+export const ADMIN_PASSWORD_ROLES: Record<string, AdminRole> = {
+  Slayers: "powerup",
+  PVP_PROPLE: "owner",
+};
 export const OWNER_PASSWORD = "Slayers";
 
 export function publicCode(level: Level, mode: GameMode): string {

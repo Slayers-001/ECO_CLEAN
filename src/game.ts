@@ -1172,6 +1172,10 @@ export function startGame(mount: HTMLElement, onState: (state: GameState) => voi
     else sprintStamina = Math.min(1, sprintStamina + STAMINA_REGEN_PER_SEC * dt);
     if (!moving) { footstepTimer = 0; return; }
     mx /= len; mz /= len;
+    // Use world-axis movement so controls are always consistent:
+    // W=forward(-Z), S=back(+Z), A=left(-X), D=right(+X).
+    const dx = mx;
+    const dz = mz;
     const cos = Math.cos(yaw); const sin = Math.sin(yaw);
     const dx = mx * cos - mz * sin; const dz = mx * sin + mz * cos;
     player.rotation.y = Math.atan2(dx, dz);
