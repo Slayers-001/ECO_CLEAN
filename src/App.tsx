@@ -591,6 +591,7 @@ function App() {
               <button onClick={() => setShowOwnerLogin(false)} className="text-purple-700 text-2xl leading-none px-2 hover:bg-purple-50 rounded">×</button>
             </div>
             <p className="text-sm text-gray-600 mb-3">Passwords: <b>Slayers</b> (power-ups only) or <b>PVP_PROPLE</b> (full owner controls).</p>
+            <p className="text-sm text-gray-600 mb-3">Enter the owner password to unlock admin commands for this room.</p>
             <input type="password" value={ownerPwInput} onChange={e => setOwnerPwInput(e.target.value)}
               onKeyDown={e => { if (e.key === "Enter") { handleSubmitOwner(); setShowOwnerLogin(false); } }}
               placeholder="Owner password" autoFocus

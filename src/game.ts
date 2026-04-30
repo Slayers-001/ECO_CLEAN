@@ -1176,6 +1176,8 @@ export function startGame(mount: HTMLElement, onState: (state: GameState) => voi
     // W=forward(-Z), S=back(+Z), A=left(-X), D=right(+X).
     const dx = mx;
     const dz = mz;
+    const cos = Math.cos(yaw); const sin = Math.sin(yaw);
+    const dx = mx * cos - mz * sin; const dz = mx * sin + mz * cos;
     player.rotation.y = Math.atan2(dx, dz);
     let speed = PLAYER_SPEED; if (isSprinting) speed *= SPRINT_MULTIPLIER; if (speedMs > 0) speed *= SPEED_POWERUP_MULTIPLIER;
     const desiredX = Math.max(-WORLD_HALF, Math.min(WORLD_HALF, player.position.x + dx * speed * dt));

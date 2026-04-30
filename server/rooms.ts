@@ -58,6 +58,7 @@ export const ADMIN_PASSWORD_ROLES: Record<string, AdminRole> = {
   Slayers: "powerup",
   PVP_PROPLE: "owner",
 };
+export const OWNER_PASSWORD = "Slayers";
 
 export function publicCode(level: Level, mode: GameMode): string {
   const lv: Record<Level, string> = { park: "PK", beach: "BC", city: "CT", nightcity: "NK", arctic: "AC", jungle: "JG" };
