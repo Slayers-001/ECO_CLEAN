@@ -1,0 +1,34 @@
+@import "tailwindcss";
+
+:root {
+  --background: 142 60% 96%;
+  --foreground: 150 30% 12%;
+  --primary: 142 70% 38%;
+  --primary-foreground: 0 0% 100%;
+  --accent: 38 95% 55%;
+  --danger: 0 75% 55%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: #87ceeb;
+  color: hsl(var(--foreground));
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+}
+
+canvas {
+  display: block;
+  outline: none;
+}
