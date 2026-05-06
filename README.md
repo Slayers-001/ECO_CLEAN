@@ -1,4 +1,46 @@
-To give your project that Cyber-Nexus and professional "Founder" aesthetic, we need to move away from a standard text-based README and toward one that uses high-end formatting, clear hierarchy, and technical authority.Here is a redesigned, advanced README for Eco-Nexus (EcoClean 3D) that highlights your branding as PVP_PRO and follows the structure needed for a successful GitHub and Render.com deployment.  🌐 Project Eco-Nexus — The Cyber-Sustainability Simulator"Redefining environmental impact through high-fidelity simulation."Founded by PVP_PRO (Utkarsh Pandey) and Developed with Nishant Amrit.🚀 Executive SummaryEco-Nexus is a next-generation, full-stack 3D multiplayer cleanup simulator[cite: 1]. Built on a Glassmorphism UI philosophy and powered by a custom Three.js engine, it merges addictive "Simulator" gameplay with real-world sustainability education.  🛠️ The Tech StackFrontend: React 19, Vite 7, Three.js, Tailwind CSS v4[cite: 1].Backend: Node.js (Express 5) + WebSocket (ws) for persistent real-time sync[cite: 1].Infrastructure: Optimized for Render.com Linux environments.  💎 Exclusive Simulator Features🎮 Informative Gameplay ModesSorting Mechanic: Items are categorized into Plastic, E-Waste, and Organic[cite: 1]. Players must sort correctly to maximize Coin yields[cite: 1].Sustainability Facts: Clicking on waste triggers informative popups regarding real-world decomposition and recycling[cite: 1].Eco-Evolution: A dynamic Eco-Meter transitions the skybox from "Smoggy Grey" to "Vibrant Cyan" as the server reaches cleanup milestones[cite: 1].🤖 Automation: The Mink SeriesMink Drones: Specialized rabbit-themed AI companions that pathfind to trash, auto-collect, and provide real-time data analysis.  🔐 The Administrative Layer (Owner Systems)Access the hidden Cyber-Nexus Console (Press P / Password: Slayers) to unlock:PVP_PRO (Overlord): Infinite Capacity + Gojo-themed "Unlimited" visual aura.  Slayers (Specialist): 3x Coin Multiplier + Executioner Vacuum[cite: 1].NordenMC (Developer): Hidden Admin Dashboard and real-time map manipulation.  📂 Project ArchitectureTo ensure successful deployment, the project is structured as a clean monorepo. Note: node_modules are strictly excluded to ensure build stability.  Plaintext/ECO_CLEAN-main
+# 🌐 Project Eco-Nexus — The Cyber-Sustainability Simulator
+
+![License: MIT](https://img.shields.io/badge/License-MIT-00f2ff.svg)
+![Deployment: Render](https://img.shields.io/badge/Deployment-Render.com-cyan.svg)
+![Framework: React 19](https://img.shields.io/badge/Framework-React%2019-blue.svg)
+
+> **"Redefining environmental impact through high-fidelity simulation."**
+> **Founded by PVP_PRO (Utkarsh Pandey) and Developed with Nishant Amrit.**
+
+---
+
+## 🚀 Executive Summary
+**Eco-Nexus** is a next-generation, full-stack 3D multiplayer cleanup simulator. Built on a **Glassmorphism** UI philosophy and powered by a custom **Three.js** engine, it merges addictive "Simulator" gameplay with real-world sustainability education.
+
+### 🛠️ The Tech Stack
+* **Frontend**: React 19, Vite 7, Three.js, Tailwind CSS v4.
+* **Backend**: Node.js (Express 5) + WebSocket (`ws`) for persistent real-time sync.
+* **Infrastructure**: Optimized for **Render.com** Linux environments[cite: 1, 2].
+
+---
+
+## 💎 Exclusive Simulator Features
+
+### 🎮 Informative Gameplay Modes
+* **Sorting Mechanic**: Items are categorized into **Plastic, E-Waste, and Organic**. Players must sort correctly to maximize Coin yields.
+* **Sustainability Facts**: Clicking on waste triggers informative popups regarding real-world decomposition and recycling[cite: 1].
+* **Eco-Evolution**: A dynamic **Eco-Meter** transitions the skybox from "Smoggy Grey" to "Vibrant Cyan" as cleanup milestones are reached[cite: 1].
+
+### 🤖 Automation: The Mink Series
+* **Mink Drones**: Specialized rabbit-themed AI companions that pathfind to trash, auto-collect, and provide real-time data analysis[cite: 1, 2].
+
+### 🔐 The Administrative Layer (Owner Systems)
+Access the hidden **Cyber-Nexus Console** (Press `P` / Password: `Slayers`) to unlock[cite: 1]:
+* **`PVP_PRO` (Overlord)**: Infinite Capacity + Gojo-themed "Unlimited" visual aura[cite: 1, 2].
+* **`Slayers` (Specialist)**: 3x Coin Multiplier + Executioner Vacuum[cite: 1].
+* **`NordenMC` (Developer)**: Hidden Admin Dashboard and real-time map manipulation[cite: 1, 2].
+
+---
+
+## 📂 Project Architecture
+The project is structured as a clean monorepo. **Note: `node_modules` are strictly excluded to ensure build stability[cite: 1, 2].**
+```text
+/ECO_CLEAN-main
 ├── /client             # React + Three.js (Front-end Game Engine)
 │   ├── /src
 │   │   ├── game.ts     # Core Simulation Logic (Fixed Runtime)
@@ -9,4 +51,3 @@ To give your project that Cyber-Nexus and professional "Founder" aesthetic, we n
 │   └── package.json
 ├── render.yaml         # Automated Deployment Blueprint
 └── README.md
-🚀 Deployment Guide (Render.com)Repository Setup: Push the clean repository (minus node_modules) to GitHub[cite: 2].Service Creation: Connect your repo to Render.com as a Web Service[cite: 1].Automatic Build: Render will detect the render.yaml and install dependencies automatically[cite: 1].Build Command: npm install && npm run build[cite: 1].Start Command: npm start[cite: 1].📈 Roadmap[ ] Phase 1: Global multiplayer "Sustainability Leaderboard."[ ] Phase 2: Integration of the "The_Slayers" unified platform login.[ ] Phase 3: New Biomes: Arctic Wasteland & Night City Nexus.📝 Credits & ContactFounder/Architect: PVP_PRO (Utkarsh Pandey)Lead Developer: Nishant Amrit
