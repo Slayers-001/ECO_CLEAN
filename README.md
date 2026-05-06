@@ -1,82 +1,12 @@
-# EcoClean 3D — Multiplayer
-
-A fast, fun, real-time multiplayer 3D cleanup game.
-**Created by Utkarsh Pandey and Nishant Amrit.**
-
-- 6 maps: Park, Beach, City, Night City, Arctic, Jungle
-- 3 game modes: Speedrun, 100% Clean, Power-Up Party
-- Real WebSocket multiplayer (public matchmaking + private room codes)
-- Combos, MVP crown, power-ups (Magnet / Speed / Bonus), emotes, mini-map
-- Owner / admin panel (press `P`, password: `Slayers`)
-- Pause menu, settings, sprint stamina, mouse-look
-
----
-
-## Why not Vercel?
-
-Vercel's free tier doesn't support **persistent WebSocket servers** —
-real-time multiplayer needs a long-lived connection that Vercel functions
-don't provide. This repo runs as one Node service that hosts both the
-static client AND the WebSocket server on the same port, so it works
-perfectly on **Render's free tier** (no credit card needed).
-
-## Best free hosting → Render.com (no credit card)
-
-Render has a free Web Service tier that:
-- ✅ supports WebSockets
-- ✅ requires **no credit card**
-- ✅ gives you HTTPS + a public URL automatically
-- ⚠️ sleeps after ~15 min idle (cold start ~30 s when someone visits, then it's fast)
-
-### Deploy in 3 minutes
-
-1. Push this folder to a public GitHub repo (or any Git provider).
-2. Go to https://render.com → sign up free (GitHub or email).
-3. Click **New → Web Service** → connect the repo.
-4. Render will auto-detect `render.yaml` — leave every field as-is and click **Create Web Service**.
-5. Wait for the first build (~3 min). Open the `*.onrender.com` URL.
-
-That's it. Share the URL with your friends — they'll join the same public
-rooms (e.g. Park + Speedrun) automatically, or create a private room and
-share its 4-letter code.
-
----
-
-## Other free hosts that work
-
-If you'd rather use something else (all support WebSockets, no card needed):
-
-- **Glitch.com** — drag this folder in. Sleeps after 5 min idle.
-- **Koyeb** — free Nano instance, deploys from Git.
-- **Adaptable.io** — free tier, deploys from Git.
-
-For all of them: build = `npm install && npm run build`, start = `npm start`.
-
----
-
-## Run locally
-
-```bash
-npm install
-npm run build      # build the client once
-npm start          # serves client + WebSocket on http://localhost:8080
-```
-
-Or run client + server separately for hot-reload:
-```bash
-npm run dev:server   # backend on :8080
-npm run dev:client   # frontend on :5173 (proxies /api → :8080)
-```
-
----
-
-## Tech
-
-- React 19 + Vite 7 + Three.js (frontend)
-- Express 5 + ws (WebSocket server)
-- Tailwind CSS v4
-- Single Node process — no DB, no extra services
-
-## Credits
-
-Created by **Utkarsh Pandey** and **Nishant Amrit**.
+To give your project that Cyber-Nexus and professional "Founder" aesthetic, we need to move away from a standard text-based README and toward one that uses high-end formatting, clear hierarchy, and technical authority.Here is a redesigned, advanced README for Eco-Nexus (EcoClean 3D) that highlights your branding as PVP_PRO and follows the structure needed for a successful GitHub and Render.com deployment.  🌐 Project Eco-Nexus — The Cyber-Sustainability Simulator"Redefining environmental impact through high-fidelity simulation."Founded by PVP_PRO (Utkarsh Pandey) and Developed with Nishant Amrit.🚀 Executive SummaryEco-Nexus is a next-generation, full-stack 3D multiplayer cleanup simulator[cite: 1]. Built on a Glassmorphism UI philosophy and powered by a custom Three.js engine, it merges addictive "Simulator" gameplay with real-world sustainability education.  🛠️ The Tech StackFrontend: React 19, Vite 7, Three.js, Tailwind CSS v4[cite: 1].Backend: Node.js (Express 5) + WebSocket (ws) for persistent real-time sync[cite: 1].Infrastructure: Optimized for Render.com Linux environments.  💎 Exclusive Simulator Features🎮 Informative Gameplay ModesSorting Mechanic: Items are categorized into Plastic, E-Waste, and Organic[cite: 1]. Players must sort correctly to maximize Coin yields[cite: 1].Sustainability Facts: Clicking on waste triggers informative popups regarding real-world decomposition and recycling[cite: 1].Eco-Evolution: A dynamic Eco-Meter transitions the skybox from "Smoggy Grey" to "Vibrant Cyan" as the server reaches cleanup milestones[cite: 1].🤖 Automation: The Mink SeriesMink Drones: Specialized rabbit-themed AI companions that pathfind to trash, auto-collect, and provide real-time data analysis.  🔐 The Administrative Layer (Owner Systems)Access the hidden Cyber-Nexus Console (Press P / Password: Slayers) to unlock:PVP_PRO (Overlord): Infinite Capacity + Gojo-themed "Unlimited" visual aura.  Slayers (Specialist): 3x Coin Multiplier + Executioner Vacuum[cite: 1].NordenMC (Developer): Hidden Admin Dashboard and real-time map manipulation.  📂 Project ArchitectureTo ensure successful deployment, the project is structured as a clean monorepo. Note: node_modules are strictly excluded to ensure build stability.  Plaintext/ECO_CLEAN-main
+├── /client             # React + Three.js (Front-end Game Engine)
+│   ├── /src
+│   │   ├── game.ts     # Core Simulation Logic (Fixed Runtime)
+│   │   └── App.tsx     # Glassmorphism UI & HUD
+│   └── package.json
+├── /server             # Node.js + WebSocket (Secure Backend)
+│   ├── index.js        # Owner Ranks & Privilege Logic
+│   └── package.json
+├── render.yaml         # Automated Deployment Blueprint
+└── README.md
+🚀 Deployment Guide (Render.com)Repository Setup: Push the clean repository (minus node_modules) to GitHub[cite: 2].Service Creation: Connect your repo to Render.com as a Web Service[cite: 1].Automatic Build: Render will detect the render.yaml and install dependencies automatically[cite: 1].Build Command: npm install && npm run build[cite: 1].Start Command: npm start[cite: 1].📈 Roadmap[ ] Phase 1: Global multiplayer "Sustainability Leaderboard."[ ] Phase 2: Integration of the "The_Slayers" unified platform login.[ ] Phase 3: New Biomes: Arctic Wasteland & Night City Nexus.📝 Credits & ContactFounder/Architect: PVP_PRO (Utkarsh Pandey)Lead Developer: Nishant Amrit
